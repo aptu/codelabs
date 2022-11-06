@@ -1,0 +1,21 @@
+syntax = "proto3";
+package micro;
+
+//option go_package = "";
+
+message MergeListRequest {
+    List list1 = 1;
+    List list2 = 2;
+}
+
+message MergeListResponse {
+    List merged = 1;
+}
+
+message List {
+    repeated int32 v = 1;
+}
+
+service MergeLists {
+    rpc Merge(MergeListRequest) returns (MergeListResponse);
+}
