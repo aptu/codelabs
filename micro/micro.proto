@@ -1,7 +1,7 @@
 syntax = "proto3";
 package micro;
 
-//option go_package = "";
+option go_package = "micro/protobuf";
 
 message MergeListRequest {
     List list1 = 1;
