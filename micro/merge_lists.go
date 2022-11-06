@@ -1,6 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"micro/pb"
+)
+
+type server struct {
+	pb.MergeListsServer
+}
+
+func (s *server) MergeLists(request pb.MergeListRequest) pb.MergeListResponse {
+	return pb.MergeListResponse{}
+}
 
 func merge(l1 []int, l2 []int) []int {
 	l3 := make([]int, len(l1)+len(l2))
