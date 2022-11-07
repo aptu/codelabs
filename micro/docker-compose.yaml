@@ -1,0 +1,9 @@
+version: '3'
+services:
+  merger:
+    image: micro:latest
+    ports:
+      - "7777:7777"
+    build:
+      context: .
+      dockerfile: Dockerfile
