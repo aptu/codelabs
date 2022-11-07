@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
@@ -12,18 +13,19 @@ import (
 )
 
 type server struct {
-	pb.MergeListsServer
+    pb.UnimplementedMergeListsServer
 }
 
 func newServer() *server {
 	s := &server{}
 
+
 	return s
 }
 
-func (s *server) MergeLists(request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
-	fmt.Println("Merging lists...")
-	return &pb.MergeListResponse{}, nil
+func (s *server) Merge(ctx context.Context, request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
+	log.Println("Merging lists...")
+    return &pb.MergeListResponse{Merged: &pb.List{V: []int32{3}}}, nil
 }
 
 func merge(l1 []int, l2 []int) []int {
@@ -70,5 +72,6 @@ func main() {
 	grpcServer := grpc.NewServer(opts...)
 	pb.RegisterMergeListsServer(grpcServer, newServer())
 	reflection.Register(grpcServer)
+    log.Println("Starting server...")
 	grpcServer.Serve(lis)
 }
