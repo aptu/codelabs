@@ -10,6 +10,7 @@ import (
 	"time"
 
 	grpc "google.golang.org/grpc"
+	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -76,6 +77,10 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	var opts []grpc.ServerOption
+	opts = append(opts, grpc.KeepaliveParams(keepalive.ServerParameters{
+		Time:    10 * time.Second,
+		Timeout: 20 * time.Second,
+	}))
 	grpcServer := grpc.NewServer(opts...)
 	pb.RegisterMergeListsServer(grpcServer, newServer())
 	reflection.Register(grpcServer)
