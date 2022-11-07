@@ -7,6 +7,7 @@ import (
 	"log"
 	"micro/pb"
 	"net"
+	"time"
 
 	grpc "google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -25,7 +26,11 @@ func newServer() *server {
 func (s *server) Merge(ctx context.Context, request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
 	log.Println("Merging lists...")
 	log.Println(request)
+	start := time.Now()
 	res := merge(request.List1.GetV(), request.List2.GetV())
+	t := time.Now()
+	elapsed := t.Sub(start)
+	log.Println("Runtime: ", elapsed)
 	//return &pb.MergeListResponse{Merged: &pb.List{V: []int32{3}}}, nil
 	return &pb.MergeListResponse{Merged: &pb.List{V: res}}, nil
 }
