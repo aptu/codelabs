@@ -21,9 +21,9 @@ func newServer() *server {
 	return s
 }
 
-func (s *server) MergeLists(request pb.MergeListRequest) pb.MergeListResponse {
+func (s *server) MergeLists(request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
 	fmt.Println("Merging lists...")
-	return pb.MergeListResponse{}
+	return &pb.MergeListResponse{}, nil
 }
 
 func merge(l1 []int, l2 []int) []int {
@@ -60,7 +60,6 @@ func main() {
 	// fmt.Println(l2)
 	// l3 := merge(l1, l2)
 	// fmt.Println(l3)
-	fmt.Println(pb.MergeListRequest{})
 
 	flag.Parse()
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", 7777))
