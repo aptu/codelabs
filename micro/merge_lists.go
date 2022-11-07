@@ -72,7 +72,7 @@ func main() {
 	// fmt.Println(l3)
 
 	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", 7777))
+	lis, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", 7777))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
