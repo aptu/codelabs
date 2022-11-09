@@ -1,4 +1,4 @@
-module micro
+module merger
 
 go 1.18
 

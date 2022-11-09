@@ -17,6 +17,6 @@ RUN cd codelabs/micro && /usr/local/go/bin/go build
 
 FROM alpine:latest AS clean
 RUN apk add --no-cache libc6-compat
-COPY --from=build /codelabs/micro/micro /usr/bin/
+COPY --from=build /codelabs/micro/merger /usr/bin/
 EXPOSE 7777/tcp
-ENTRYPOINT ["/usr/bin/micro"]
+ENTRYPOINT ["/usr/bin/merger"]

@@ -1,1 +1,1 @@
-docker build -t micro .
+docker build -t merger .

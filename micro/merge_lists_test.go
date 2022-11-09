@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"log"
-	"micro/pb"
+	"merger/pb"
 	"testing"
 
 	grpc "google.golang.org/grpc"

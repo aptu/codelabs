@@ -1,9 +1,9 @@
 version: '3'
 services:
   merger:
-    image: micro:latest
+    image: merger:latest
     ports:
-      - "7777:7777"
+        - "7777:7777/tcp"
     build:
       context: .
       dockerfile: Dockerfile

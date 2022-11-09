@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"micro/pb"
+	"merger/pb"
 	"net"
 	"time"
 
