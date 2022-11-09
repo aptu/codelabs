@@ -5,5 +5,5 @@ services:
     ports:
         - "7777:7777/tcp"
     build:
-      context: .
+      context: ./merger
       dockerfile: Dockerfile
