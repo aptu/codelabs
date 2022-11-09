@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "logger/pb";
+
+message LogRequest {
+    string text = 1;
+}
+
+service Logger {
+    rpc Info(LogRequest) returns (google.protobuf.Empty);
+    rpc Error(LogRequest) returns (google.protobuf.Empty);
+}

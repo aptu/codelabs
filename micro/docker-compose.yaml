@@ -7,3 +7,12 @@ services:
     build:
       context: ./merger
       dockerfile: Dockerfile
+
+  logger:
+    image: logger:latest
+    ports:
+      - "7778:7778/tcp"
+    build:
+      context: ./logger
+      dockerfile: Dockerfile
+
