@@ -9,7 +9,7 @@ import (
 	"net"
 	"time"
 
-	empty "github.com/golang/protobuf/ptypes/empty"
+	// empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
@@ -25,14 +25,14 @@ func newServer() *server {
 	return s
 }
 
-func (s *server) Info(ctx context.Context, in *pb.LogRequest) (*empty.Empty, error) {
+func (s *server) Info(ctx context.Context, in *pb.LogRequest) (*pb.Empty, error) {
 	fmt.Println("[INFO] ", in.Text)
-	return &empty.Empty{}, nil
+	return &pb.Empty{}, nil
 }
 
-func (s *server) Error(ctx context.Context, in *pb.LogRequest) (*empty.Empty, error) {
+func (s *server) Error(ctx context.Context, in *pb.LogRequest) (*pb.Empty, error) {
 	fmt.Println("[ERROR] ", in.Text)
-	return &empty.Empty{}, nil
+	return &pb.Empty{}, nil
 }
 
 func main() {

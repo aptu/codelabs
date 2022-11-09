@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package pb;
 
-import "google/protobuf/empty.proto";
+/* import "google/protobuf/empty.proto"; */
 
 option go_package = "logger/pb";
 
@@ -10,7 +10,9 @@ message LogRequest {
     string text = 1;
 }
 
+message Empty {}
+
 service Logger {
-    rpc Info(LogRequest) returns (google.protobuf.Empty);
-    rpc Error(LogRequest) returns (google.protobuf.Empty);
+    rpc Info(LogRequest) returns (Empty);
+    rpc Error(LogRequest) returns (Empty);
 }
