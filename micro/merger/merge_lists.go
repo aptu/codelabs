@@ -7,6 +7,7 @@ import (
 	"log"
 	"merger/pb"
 	"net"
+	"os"
 	"time"
 
 	grpc "google.golang.org/grpc"
@@ -24,14 +25,27 @@ func newServer() *server {
 	return s
 }
 
+func info(text string) {
+	url := os.Getenv("LOGGER_SVC_URL")
+	conn, err := grpc.Dial(url, grpc.WithInsecure())
+	defer conn.Close()
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	logger := pb.NewLoggerClient(conn)
+	logger.Info(context.Background(), &pb.LogRequest{Text: text})
+}
+
 func (s *server) Merge(ctx context.Context, request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
-	log.Println("Merging lists...")
-	log.Println(request)
+	info("Merging lists...")
+	info(request.String())
 	start := time.Now()
 	res := merge(request.List1.GetV(), request.List2.GetV())
 	t := time.Now()
 	elapsed := t.Sub(start)
-	log.Println("Runtime: ", elapsed)
+	info("Runtime: " + elapsed.String())
 	//return &pb.MergeListResponse{Merged: &pb.List{V: []int32{3}}}, nil
 	return &pb.MergeListResponse{Merged: &pb.List{V: res}}, nil
 }
