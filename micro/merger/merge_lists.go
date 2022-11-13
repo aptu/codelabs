@@ -27,6 +27,7 @@ func newServer() *server {
 
 func info(text string) {
 	url := os.Getenv("LOGGER_SVC_URL")
+	fmt.Println(url)
 	conn, err := grpc.Dial(url, grpc.WithInsecure())
 	defer conn.Close()
 

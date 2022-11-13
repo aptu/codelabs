@@ -7,6 +7,8 @@ services:
     build:
       context: ./merger
       dockerfile: Dockerfile
+    environment:
+      - LOGGER_SVC_URL="0.0.0.0:7778"
 
   logger:
     image: logger:latest
@@ -15,4 +17,5 @@ services:
     build:
       context: ./logger
       dockerfile: Dockerfile
+    
 
