@@ -36,7 +36,11 @@ func info(text string) {
 	}
 
 	logger := pb.NewLoggerClient(conn)
-	logger.Info(context.Background(), &pb.LogRequest{Text: text})
+	res, err := logger.Info(context.Background(), &pb.LogRequest{Text: text})
+	if err != nil {
+		log.Println(err)
+	}
+	log.Println(res)
 }
 
 func (s *server) Merge(ctx context.Context, request *pb.MergeListRequest) (*pb.MergeListResponse, error) {
