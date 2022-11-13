@@ -8,7 +8,9 @@ services:
       context: ./merger
       dockerfile: Dockerfile
     environment:
-      - LOGGER_SVC_URL="0.0.0.0:7778"
+      LOGGER_SVC_URL: "logger:7778"
+    depends_on:
+      - logger
 
   logger:
     image: logger:latest
